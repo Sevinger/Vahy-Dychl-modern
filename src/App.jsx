@@ -9,6 +9,7 @@ import Admin from './pages/Admin';
 import Servis from './pages/Servis';
 import Catalog from './pages/Catalog';
 import ProductDetail from './pages/ProductDetail';
+import EetProdukt from './pages/EetProdukt';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
             <Route path="/admin" element={<Admin />} />
             <Route path="/katalog" element={<Catalog />} />
             <Route path="/produkt/:id" element={<ProductDetail />} />
+            <Route path="/eet/:slug" element={<EetProdukt />} />
             <Route path="/servis" element={<Servis />} />
             <Route path="*" element={<PageNotFound />} />
           </Routes>

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { CheckCircle, MessageSquare, ChevronRight } from "lucide-react";
 
 const categoryCards = [
@@ -143,10 +144,92 @@ const catalog = [
     label: "EET – Registrační pokladny",
     short: "EET/Pokladny",
     products: [
-      { name: "CHD 3050", desc: "Pro malé prodejny, EET ready, bez měsíčních poplatků, jednopásková, tisk grafického loga", price: "6.690 / 7.850", certified: false },
-      { name: "CHD 3850", desc: "Pro menší prodejny, EET ready, bez měsíčních poplatků, jednopásková, tisk grafického loga", price: "6.890 / 8.350", certified: false },
-      { name: "Snímače čárového kódu", desc: "Výběr dle potřeby, řešeno individuálně", price: "Na dotaz", certified: false },
-      { name: "Příslušenství", desc: "Termokotoučky, termoetikety do vah — ceník na vyžádání", price: "Na dotaz", certified: false },
+      {
+        name: "CHD 3050",
+        desc: "Pro malé prodejny. Připravena pro EET, bez měsíčních poplatků. Jednopásková, tisk grafického loga. UV detektor pravosti bankovek. Možnost provozu na akumulátor.",
+        price: "od 6.690",
+        certified: false,
+        image: "https://new.vahy-dychl.cz/CHD30501.gif",
+        slug: "chd-3050",
+      },
+      {
+        name: "CHD 3850",
+        desc: "Pro menší prodejny, potraviny, bistra a bufety. Připravena pro EET, bez měsíčních poplatků. Jednopásková se střihačem, tisk grafického loga. Elektronický žurnál na SD kartu.",
+        price: "od 6.890",
+        certified: false,
+        image: "https://new.vahy-dychl.cz/CHD38501.png",
+        slug: "chd-3850",
+      },
+      {
+        name: "MS-5145 ECLIPSE",
+        desc: "Jednopaprskový laserový ruční snímač. Patentované tlačítko CodeGate pro inteligentní výběr kódu. Hloubka pole 0–140 mm, rychlost 72 sejmutí/s.",
+        price: "Na dotaz",
+        certified: false,
+        inquiry: true,
+        image: "https://www.vahy-dychl.cz/userFiles/snimace/1001.jpg",
+        slug: "ms-5145-eclipse",
+      },
+      {
+        name: "MS-9520 VOYAGER",
+        desc: "Jednopaprskový laserový snímač – ruční i stacionární použití. Snímá i 2D kódy RSS-14. Hloubka pole 0–203 mm, rychlost 72 sejmutí/s.",
+        price: "Na dotaz",
+        certified: false,
+        inquiry: true,
+        image: "https://www.vahy-dychl.cz/userFiles/snimace/1002.jpg",
+        slug: "ms-9520-voyager",
+      },
+      {
+        name: "MS-9533 VOYAGER BT",
+        desc: "Bezdrátový Bluetooth snímač. Dosah až 10 m od stojanu, až 14 000 sejmutí na jedno nabití. Tlačítko CodeGate. Snímá i 2D kódy RSS-14.",
+        price: "Na dotaz",
+        certified: false,
+        inquiry: true,
+        image: "https://www.vahy-dychl.cz/userFiles/snimace/1003.jpg",
+        slug: "ms-9533-voyager-bt",
+      },
+      {
+        name: "MS-9540 VOYAGER CG",
+        desc: "Laserový ruční snímač řady Voyager s funkcí CodeGate. Spolehlivý výběr jednotlivých položek ze seznamu čárových kódů.",
+        price: "Na dotaz",
+        certified: false,
+        inquiry: true,
+        image: "https://www.vahy-dychl.cz/userFiles/snimace/1004.jpg",
+        slug: "ms-9540-voyager-cg",
+      },
+      {
+        name: "MS-6720",
+        desc: "Kompaktní laserový snímač čárového kódu. Robustní konstrukce vhodná pro každodenní provoz v obchodě nebo na pokladně.",
+        price: "Na dotaz",
+        certified: false,
+        inquiry: true,
+        image: "https://www.vahy-dychl.cz/userFiles/snimace/1005.jpg",
+        slug: "ms-6720",
+      },
+      {
+        name: "MS-7120 ORBIT",
+        desc: "Všesměrový stolní snímač čárového kódu. Automatické snímání bez zmáčknutí tlačítka. Vhodný jako stacionární snímač u pokladny.",
+        price: "Na dotaz",
+        certified: false,
+        inquiry: true,
+        image: "https://www.vahy-dychl.cz/userFiles/snimace/1006.jpg",
+        slug: "ms-7120-orbit",
+      },
+      {
+        name: "MS-7620 / 7625 HORIZONT",
+        desc: "Výkonný všesměrový snímač pro intenzivní provoz. Horizontální design pro pohodlné snímání zboží. Vhodný pro větší obchody a supermarkety.",
+        price: "Na dotaz",
+        certified: false,
+        inquiry: true,
+        image: "https://www.vahy-dychl.cz/userFiles/snimace/1007.jpg",
+        slug: "ms-7620-horizont",
+      },
+      {
+        name: "Příslušenství",
+        desc: "Termokotoučky, termoetikety do vah — ceník na vyžádání",
+        price: "Na dotaz",
+        certified: false,
+        inquiry: true,
+      },
     ],
   },
 ];
@@ -189,8 +272,17 @@ export default function ProductCatalog() {
         {active.products.map((p) => (
           <div
             key={p.name}
-            className="bg-white border border-slate-100 rounded-2xl p-5 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all group"
+            className="bg-white border border-slate-100 rounded-2xl p-5 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all group flex flex-col"
           >
+            {p.image && (
+              <div className="mb-3 flex items-center justify-center h-36 overflow-hidden rounded-xl bg-slate-50">
+                <img
+                  src={p.image}
+                  alt={p.name}
+                  className="max-h-full max-w-full object-contain"
+                />
+              </div>
+            )}
             <div className="flex items-start justify-between gap-2 mb-2">
               <h4 className="font-bold text-slate-800 text-base group-hover:text-sky-600 transition-colors">
                 {p.name}
@@ -201,21 +293,31 @@ export default function ProductCatalog() {
                 </span>
               )}
             </div>
-            <p className="text-sm text-slate-500 mb-4">{p.desc}</p>
-            <div className="flex items-center justify-between">
+            <p className="text-sm text-slate-500 mb-4 flex-1">{p.desc}</p>
+            <div className="flex items-center justify-between gap-2 mt-auto">
               <div>
-                <span className="text-xs text-slate-400">Cena od</span>
+                <span className="text-xs text-slate-400">{p.inquiry && !p.price.startsWith("od") ? "" : "Cena od"}</span>
                 <div className="text-lg font-black text-sky-600">
-                  {p.price} <span className="text-xs font-normal text-slate-400">Kč bez DPH</span>
+                  {p.price}{p.price !== "Na dotaz" && <span className="text-xs font-normal text-slate-400"> Kč bez DPH</span>}
                 </div>
               </div>
-              <a
-                href="#kontakt"
-                className="flex items-center gap-1 text-xs font-semibold text-white bg-gradient-to-r from-sky-500 to-cyan-400 px-3 py-2 rounded-xl hover:scale-105 transition-all shadow"
-              >
-                <MessageSquare className="w-3 h-3" />
-                {p.inquiry ? "Poptávka" : "Poptat"}
-              </a>
+              <div className="flex gap-2">
+                {p.slug && (
+                  <Link
+                    to={`/eet/${p.slug}`}
+                    className="flex items-center gap-1 text-xs font-semibold text-sky-600 border border-sky-200 px-3 py-2 rounded-xl hover:bg-sky-50 transition-all"
+                  >
+                    Detail
+                  </Link>
+                )}
+                <a
+                  href="#kontakt"
+                  className="flex items-center gap-1 text-xs font-semibold text-white bg-gradient-to-r from-sky-500 to-cyan-400 px-3 py-2 rounded-xl hover:scale-105 transition-all shadow"
+                >
+                  <MessageSquare className="w-3 h-3" />
+                  {p.inquiry ? "Poptávka" : "Poptat"}
+                </a>
+              </div>
             </div>
           </div>
         ))}
