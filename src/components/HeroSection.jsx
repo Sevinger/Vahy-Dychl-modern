@@ -92,7 +92,7 @@ export default function HeroSection() {
                 borderRadius: "9999px",
                 padding: "4px 20px",
                 backgroundColor: "transparent",
-                color: "#2563eb",
+                color: "#000000",
                 fontWeight: 600,
               }}>
                 Nejprodávanější váhy

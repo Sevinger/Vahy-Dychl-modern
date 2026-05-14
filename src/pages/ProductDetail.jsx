@@ -20,6 +20,17 @@ export default function ProductDetail() {
       .then(({ data }) => { setProduct(data || null); setLoading(false); });
   }, [id]);
 
+  useEffect(() => {
+    if (!product?.description) return;
+    document.querySelectorAll(".product-description table").forEach(table => {
+      if (table.parentElement.classList.contains("table-wrap")) return;
+      const wrap = document.createElement("div");
+      wrap.className = "table-wrap";
+      table.parentNode.insertBefore(wrap, table);
+      wrap.appendChild(table);
+    });
+  }, [product]);
+
   let variants = null;
   if (product?.variants_json) {
     try { variants = JSON.parse(product.variants_json); } catch {}
@@ -144,9 +155,10 @@ export default function ProductDetail() {
         .product-description h2, .product-description h3 { font-weight: 700; margin: 1em 0 0.5em; }
         .product-description ul, .product-description ol { padding-left: 1.5em; margin: 0.5em 0; }
         .product-description li { margin: 0.25em 0; }
-        .product-description table { border-collapse: collapse; width: 100%; margin: 1em 0; }
-        .product-description td, .product-description th { border: 1px solid #7a7a7a; padding: 6px 12px; }
+        .product-description table { border-collapse: collapse; width: 100%; margin: 1em 0; min-width: 400px; }
+        .product-description td, .product-description th { border: 1px solid #7a7a7a; padding: 6px 12px; white-space: nowrap; }
         .product-description th { background: #878787; font-weight: 700; }
+        .product-description .table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
         .product-description p { margin: 0.5em 0; }
         .product-description strong, .product-description b { font-weight: 700; }
       `}</style>
