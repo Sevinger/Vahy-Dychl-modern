@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { CheckCircle, MessageSquare, ChevronRight } from "lucide-react";
 
+
 const categoryCards = [
   { id: "A", emoji: "🔬", label: "Laboratorní" },
   { id: "B", emoji: "🛒", label: "Obchodní" },
