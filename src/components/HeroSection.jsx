@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { CheckCircle } from "lucide-react";
 
@@ -36,6 +37,13 @@ const BESTSELLERS = [
 
 export default function HeroSection() {
   const navigate = useNavigate();
+  const [searchValue, setSearchValue] = useState("");
+
+  const handleSearch = (e) => {
+    if (e.key === "Enter" && searchValue.trim()) {
+      navigate(`/katalog?search=${encodeURIComponent(searchValue.trim())}`);
+    }
+  };
 
   return (
     <section id="vahy" style={{ background: "#939393" }} className="py-16 md:py-24">
@@ -78,7 +86,17 @@ export default function HeroSection() {
 
           <div className="md:w-3/5 flex flex-col gap-5">
             <h2 className="text-lg font-bold uppercase tracking-widest text-black">
-              Nejprodávanější váhy
+              <span style={{
+                display: "inline-block",
+                border: "2px solid #2563eb",
+                borderRadius: "9999px",
+                padding: "4px 20px",
+                backgroundColor: "transparent",
+                color: "#2563eb",
+                fontWeight: 600,
+              }}>
+                Nejprodávanější váhy
+              </span>
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               {BESTSELLERS.map((p) => (
@@ -93,8 +111,8 @@ export default function HeroSection() {
                     <p className="text-sm font-semibold leading-tight mb-2 text-black flex items-center gap-1.5">
                       {p.name}
                       {p.certified && (
-                        <span className="w-5 h-5 rounded text-[9px] font-black flex items-center justify-center shrink-0"
-                          style={{ background: "#16a34a", color: "#fff" }}>M</span>
+                        <span className="rounded text-[9px] font-black flex items-center justify-center shrink-0 px-1.5 py-0.5"
+                          style={{ background: "#16a34a", color: "#fff" }}>Ověřeno</span>
                       )}
                     </p>
                     <p className="text-base font-black text-black">{p.price}</p>
@@ -103,13 +121,6 @@ export default function HeroSection() {
               ))}
             </div>
 
-            <div>
-              <a href="/katalog"
-                className="inline-block px-8 py-3 font-bold text-sm tracking-widest uppercase rounded-lg text-black transition-opacity hover:opacity-80"
-                style={{ background: "#2563eb" }}>
-                Prohlédnout katalog
-              </a>
-            </div>
           </div>
 
         </div>

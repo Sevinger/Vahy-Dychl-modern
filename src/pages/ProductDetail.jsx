@@ -70,7 +70,7 @@ export default function ProductDetail() {
                 </span>
                 {product.certified && (
                   <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded text-xs font-bold text-white" style={{ background: "#16a34a" }}>
-                    M – Úředně ověřeno
+                    Ověřeno
                   </span>
                 )}
               </div>

@@ -148,7 +148,10 @@ export default function Catalog() {
                       ? <span className="text-xs font-bold text-orange-400">od {p.price} Kč</span>
                       : <span className="text-xs text-gray-500">na poptávku</span>
                     }
-                    {p.certified && <CheckCircle className="w-3.5 h-3.5 text-green-500 shrink-0" />}
+                    {p.certified && (
+                      <span className="rounded text-[9px] font-black flex items-center justify-center shrink-0 px-1.5 py-0.5"
+                        style={{ background: "#16a34a", color: "#fff" }}>Ověřeno</span>
+                    )}
                   </div>
                 </div>
               </Link>

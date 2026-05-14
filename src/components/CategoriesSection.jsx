@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const CATEGORIES = [
@@ -17,6 +18,13 @@ const CATEGORIES = [
 
 export default function CategoriesSection() {
   const navigate = useNavigate();
+  const [searchValue, setSearchValue] = useState("");
+
+  const handleSearch = (e) => {
+    if (e.key === "Enter" && searchValue.trim()) {
+      navigate(`/katalog?search=${encodeURIComponent(searchValue.trim())}`);
+    }
+  };
   return (
     <section id="kategorie" style={{ background: "#878787" }} className="py-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -29,11 +37,20 @@ export default function CategoriesSection() {
               Vyberte kategorii — vše skladem, montáž a servis v celé ČR.
             </p>
           </div>
-          <a href="#kontakt"
-            className="shrink-0 inline-block px-5 py-2.5 text-sm font-bold tracking-wide text-black transition-opacity hover:opacity-80 rounded-full"
-            style={{ background: "#2563eb" }}>
-            Co jste nenašli? Zeptejte se →
-          </a>
+          <input
+            type="text"
+            value={searchValue}
+            onChange={e => setSearchValue(e.target.value)}
+            onKeyDown={handleSearch}
+            placeholder="Napište co hledáte..."
+            className="shrink-0 px-5 py-2.5 text-sm font-semibold tracking-wide text-black placeholder-black/50 focus:outline-none transition-all"
+            style={{
+              background: "transparent",
+              border: "2px solid #2563eb",
+              borderRadius: "9999px",
+              minWidth: "240px",
+            }}
+          />
         </div>
 
         <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-4 mb-10">
@@ -60,13 +77,6 @@ export default function CategoriesSection() {
           ))}
         </div>
 
-        <div className="text-center">
-          <a href="/servis"
-            className="inline-block px-10 py-3 font-bold text-sm tracking-widest uppercase rounded-lg text-black transition-opacity hover:opacity-80"
-            style={{ background: "#2563eb" }}>
-            Přejít na SERVIS
-          </a>
-        </div>
       </div>
     </section>
   );

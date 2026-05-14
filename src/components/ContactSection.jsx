@@ -52,7 +52,7 @@ export default function ContactSection() {
               <div key={title} className="flex items-start gap-4">
                 <div className="w-10 h-10 flex items-center justify-center shrink-0 rounded-lg"
                   style={{ background: "#9e9e9e", border: "1px solid #7a7a7a" }}>
-                  <Icon className="w-4 h-4 text-black" />
+                  <Icon className="w-4 h-4" style={{ color: "#2563eb" }} />
                 </div>
                 <div>
                   <div className="font-bold text-sm mb-0.5 text-black">{title}</div>
