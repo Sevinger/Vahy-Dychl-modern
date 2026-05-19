@@ -3,7 +3,7 @@ import { Menu, X, Phone, Search } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 const navLinks = [
-  { label: "VÁHY", href: "#vahy" },
+  { label: "VÁHY", href: "/katalog" },
   { label: "POKLADNY", href: "/pokladny" },
   { label: "SERVIS", href: "/servis" },
   { label: "KONTAKT", href: "/kontakt" },
