@@ -6,7 +6,7 @@ const navLinks = [
   { label: "VÁHY", href: "#vahy" },
   { label: "POKLADNY", href: "/pokladny" },
   { label: "SERVIS", href: "/servis" },
-  { label: "KONTAKT", href: "#kontakt" },
+  { label: "KONTAKT", href: "/kontakt" },
 ];
 
 export default function Header() {

@@ -11,6 +11,7 @@ import Catalog from './pages/Catalog';
 import ProductDetail from './pages/ProductDetail';
 import EetProdukt from './pages/EetProdukt';
 import Pokladny from './pages/Pokladny';
+import Kontakt from './pages/Kontakt';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
             <Route path="/eet/:slug" element={<EetProdukt />} />
             <Route path="/servis" element={<Servis />} />
             <Route path="/pokladny" element={<Pokladny />} />
+            <Route path="/kontakt" element={<Kontakt />} />
             <Route path="*" element={<PageNotFound />} />
           </Routes>
         </Router>
