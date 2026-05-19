@@ -4,7 +4,7 @@ import { CheckCircle } from "lucide-react";
 
 const BULLETS = [
   "Průmyslové, obchodní, laboratorní a osobní váhy",
-  "Certifikované kalibrace dle ČMI",
+  "Zajištění úředního ověření váhy ve spolupráci s ČMI",
   "Záruční i pozáruční servis – celá ČR",
   "Odborná instalace a doprava",
   "Poradenství při výběru váhy",

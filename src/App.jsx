@@ -10,6 +10,7 @@ import Servis from './pages/Servis';
 import Catalog from './pages/Catalog';
 import ProductDetail from './pages/ProductDetail';
 import EetProdukt from './pages/EetProdukt';
+import Pokladny from './pages/Pokladny';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
             <Route path="/produkt/:id" element={<ProductDetail />} />
             <Route path="/eet/:slug" element={<EetProdukt />} />
             <Route path="/servis" element={<Servis />} />
+            <Route path="/pokladny" element={<Pokladny />} />
             <Route path="*" element={<PageNotFound />} />
           </Routes>
         </Router>

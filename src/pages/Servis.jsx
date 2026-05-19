@@ -1,9 +1,10 @@
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import { Phone, Mail, MapPin, Clock, Wrench, FileCheck, Scale } from "lucide-react";
+import ServisniKontaktCard from "../components/ServisniKontaktCard";
+import { Wrench, FileCheck, Phone, MapPin } from "lucide-react";
 
 const SERVICES = [
-  "Úřední ověření vah (cejchování) — ČMI",
+  "Úřední ověření vah (cejchování) ve spolupráci s ČMI",
   "Seřízení, přestavby a kalibrace vah",
   "Vyhotovení kalibračních listů měřidel",
   "Dodávky závaží IV. třídy obchodní i lékárenské",
@@ -14,7 +15,7 @@ const SERVICES = [
 const CARDS = [
   { icon: FileCheck, title: "Úřední ověření", desc: "Certifikace dle ČMI" },
   { icon: Wrench, title: "Zkušení technici", desc: "Martin Dytrich a tým" },
-  { icon: Phone, title: "Pohotovost", desc: "Po–Pá 7:00–17:00" },
+  { icon: Phone, title: "Pohotovost", desc: "Po–Pá dle domluvy" },
   { icon: MapPin, title: "Celá ČR", desc: "Servis i montáž kdekoliv" },
 ];
 
@@ -58,38 +59,29 @@ export default function Servis() {
               </a>
             </div>
 
-            <div className="flex-1 grid grid-cols-2 gap-4">
-              {CARDS.map((item) => {
-                const Icon = item.icon;
-                return (
-                  <div key={item.title} className="p-5 rounded-2xl" style={{ background: "#a8a8a8", border: "1px solid #7a7a7a" }}>
-                    <Icon className="w-7 h-7 mb-3 text-black" />
-                    <div className="font-bold text-black">{item.title}</div>
-                    <div className="text-sm mt-1 text-black">{item.desc}</div>
-                  </div>
-                );
-              })}
+            <div className="flex-1">
+              <div className="rounded-2xl p-8" style={{ background: "#a8a8a8", border: "1px solid #7a7a7a" }}>
+                <div className="grid grid-cols-2 gap-6">
+                  {CARDS.map((item) => {
+                    const Icon = item.icon;
+                    return (
+                      <div key={item.title} className="flex flex-col gap-2">
+                        <Icon className="w-6 h-6 text-black" />
+                        <span className="font-bold text-black">{item.title}</span>
+                        <p className="text-sm text-black">{item.desc}</p>
+                      </div>
+                    );
+                  })}
+                </div>
+                <div className="mt-6 pt-6 flex items-center gap-3" style={{ borderTop: "1px solid #7a7a7a" }}>
+                  <span className="font-semibold text-black">Otevírací doba:</span>
+                  <span className="text-black">Po–Pá <strong>dle domluvy</strong></span>
+                </div>
+              </div>
             </div>
           </div>
 
-          <div className="p-8 rounded-2xl max-w-lg mx-auto text-center" style={{ background: "#a8a8a8", border: "1px solid #7a7a7a" }}>
-            <Scale className="w-10 h-10 mx-auto mb-4" style={{ color: "#2563eb" }} />
-            <h3 className="text-xl font-black text-black mb-5">Servisní kontakt</h3>
-            <div className="space-y-3">
-              <a href="tel:+420775698555" className="flex items-center justify-center gap-2 font-semibold text-black hover:opacity-70 transition-opacity">
-                <Phone className="w-4 h-4" /> +420 775 698 555
-              </a>
-              <a href="mailto:servisdychl@seznam.cz" className="flex items-center justify-center gap-2 text-black hover:opacity-70 transition-opacity">
-                <Mail className="w-4 h-4" /> servisdychl@seznam.cz
-              </a>
-              <div className="flex items-center justify-center gap-2 text-black">
-                <Clock className="w-4 h-4" /> Po–Pá: 7:00 – 17:00
-              </div>
-              <div className="flex items-center justify-center gap-2 text-black">
-                <MapPin className="w-4 h-4" /> Kocourkova 3, 787 01 Šumperk
-              </div>
-            </div>
-          </div>
+          <ServisniKontaktCard />
         </div>
       </section>
 

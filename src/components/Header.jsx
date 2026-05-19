@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 const navLinks = [
   { label: "VÁHY", href: "#vahy" },
-  { label: "POKLADNY", href: "#kategorie" },
+  { label: "POKLADNY", href: "/pokladny" },
   { label: "SERVIS", href: "/servis" },
   { label: "KONTAKT", href: "#kontakt" },
 ];
