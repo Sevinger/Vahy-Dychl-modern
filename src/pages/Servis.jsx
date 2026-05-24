@@ -21,20 +21,22 @@ const CARDS = [
 
 export default function Servis() {
   return (
-    <div className="min-h-screen" style={{ background: "#939393" }}>
+    <div className="min-h-screen" style={{ background: "#0b1120" }}>
       <Header />
 
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-14">
-            <span className="inline-block px-5 py-2 rounded-full text-sm font-black tracking-widest uppercase text-black mb-4"
-              style={{ background: "#2563eb" }}>
+            <span
+              className="inline-block px-5 py-2 rounded-full text-sm font-black tracking-widest uppercase mb-4"
+              style={{ background: "rgba(56,189,248,0.12)", border: "1px solid rgba(56,189,248,0.3)", color: "#38bdf8" }}
+            >
               Servisní centrum – celá ČR
             </span>
-            <h1 className="text-3xl md:text-5xl font-black text-black mb-4">
+            <h1 className="text-3xl md:text-5xl font-black mb-4" style={{ color: "#f1f5f9" }}>
               Servis & Kalibrace
             </h1>
-            <p className="max-w-2xl mx-auto text-black">
+            <p className="max-w-2xl mx-auto" style={{ color: "#94a3b8" }}>
               Komplexní servisní služby pro průmyslové, obchodní i přesné váhy všech značek.
               Úřední ověření ve spolupráci s Českým metrologickým institutem (ČMI).
             </p>
@@ -42,40 +44,46 @@ export default function Servis() {
 
           <div className="flex flex-col md:flex-row items-start gap-12 mb-16">
             <div className="flex-1">
-              <h2 className="text-2xl font-black text-black mb-5">Co nabízíme</h2>
+              <h2 className="text-2xl font-black mb-5" style={{ color: "#f1f5f9" }}>Co nabízíme</h2>
               <ul className="space-y-3">
                 {SERVICES.map((item) => (
-                  <li key={item} className="flex items-center gap-3 text-sm text-black">
-                    <div className="w-2 h-2 rounded-full shrink-0" style={{ background: "#2563eb" }} />
+                  <li key={item} className="flex items-center gap-3 text-sm" style={{ color: "#cbd5e1" }}>
+                    <span style={{
+                      width: 7, height: 7, borderRadius: "50%", flexShrink: 0,
+                      background: "#38bdf8", boxShadow: "0 0 8px rgba(56,189,248,0.6)",
+                      display: "inline-block",
+                    }} />
                     {item}
                   </li>
                 ))}
               </ul>
-              <a href="mailto:servisdychl@seznam.cz"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-lg font-bold text-black transition-opacity hover:opacity-80 mt-8"
-                style={{ background: "#2563eb" }}>
+              <a
+                href="mailto:servisdychl@seznam.cz"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-lg font-bold text-white transition-opacity hover:opacity-80 mt-8"
+                style={{ background: "linear-gradient(135deg, #2563eb, #4f46e5)", boxShadow: "0 4px 16px rgba(37,99,235,0.3)" }}
+              >
                 <Wrench className="w-4 h-4" />
                 Objednat servis: servisdychl@seznam.cz
               </a>
             </div>
 
             <div className="flex-1">
-              <div className="rounded-2xl p-8" style={{ background: "#a8a8a8", border: "1px solid #7a7a7a" }}>
+              <div className="rounded-2xl p-8" style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.09)" }}>
                 <div className="grid grid-cols-2 gap-6">
                   {CARDS.map((item) => {
                     const Icon = item.icon;
                     return (
                       <div key={item.title} className="flex flex-col gap-2">
-                        <Icon className="w-6 h-6 text-black" />
-                        <span className="font-bold text-black">{item.title}</span>
-                        <p className="text-sm text-black">{item.desc}</p>
+                        <Icon className="w-6 h-6" style={{ color: "#38bdf8" }} />
+                        <span className="font-bold" style={{ color: "#f1f5f9" }}>{item.title}</span>
+                        <p className="text-sm" style={{ color: "#94a3b8" }}>{item.desc}</p>
                       </div>
                     );
                   })}
                 </div>
-                <div className="mt-6 pt-6 flex items-center gap-3" style={{ borderTop: "1px solid #7a7a7a" }}>
-                  <span className="font-semibold text-black">Otevírací doba:</span>
-                  <span className="text-black">Po–Pá <strong>dle domluvy</strong></span>
+                <div className="mt-6 pt-6 flex items-center gap-3" style={{ borderTop: "1px solid rgba(255,255,255,0.09)" }}>
+                  <span className="font-semibold" style={{ color: "#94a3b8" }}>Otevírací doba:</span>
+                  <span style={{ color: "#cbd5e1" }}>Po–Pá <strong style={{ color: "#f1f5f9" }}>dle domluvy</strong></span>
                 </div>
               </div>
             </div>

@@ -37,46 +37,53 @@ export default function ProductDetail() {
   }
 
   if (loading) return (
-    <div className="min-h-screen flex items-center justify-center" style={{ background: "#939393" }}>
-      <div className="w-8 h-8 border-4 rounded-full animate-spin" style={{ borderColor: "#7a7a7a", borderTopColor: "#2563eb" }} />
+    <div className="min-h-screen flex items-center justify-center" style={{ background: "#0b1120" }}>
+      <div className="w-8 h-8 border-4 rounded-full animate-spin" style={{ borderColor: "rgba(255,255,255,0.1)", borderTopColor: "#38bdf8" }} />
     </div>
   );
 
   if (!product) return (
-    <div className="min-h-screen flex flex-col items-center justify-center gap-4" style={{ background: "#939393" }}>
-      <p className="text-black">Produkt nenalezen.</p>
-      <Link to="/katalog" className="font-semibold text-black underline hover:opacity-70">← Zpět do katalogu</Link>
+    <div className="min-h-screen flex flex-col items-center justify-center gap-4" style={{ background: "#0b1120" }}>
+      <p style={{ color: "#94a3b8" }}>Produkt nenalezen.</p>
+      <Link to="/katalog" className="font-semibold underline hover:opacity-70" style={{ color: "#38bdf8" }}>← Zpět do katalogu</Link>
     </div>
   );
 
   return (
-    <div className="min-h-screen" style={{ background: "#939393" }}>
-      <header className="sticky top-0 z-40" style={{ background: "#939393", borderBottom: "1px solid #7a7a7a" }}>
+    <div className="min-h-screen" style={{ background: "#0b1120" }}>
+      <header className="sticky top-0 z-40" style={{
+        background: "rgba(16,28,65,0.92)",
+        backdropFilter: "blur(16px)",
+        WebkitBackdropFilter: "blur(16px)",
+        borderBottom: "1px solid rgba(255,255,255,0.09)",
+      }}>
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center gap-3">
           <Link to={`/katalog?cat=${product.category_id}`}
-            className="flex items-center gap-2 font-semibold text-sm text-black hover:opacity-70">
+            className="flex items-center gap-2 font-semibold text-sm hover:opacity-70"
+            style={{ color: "#38bdf8" }}>
             <ArrowLeft className="w-4 h-4" /> Katalog
           </Link>
-          <span className="text-black/40">/</span>
-          <span className="text-sm truncate text-black">{product.name}</span>
+          <span style={{ color: "rgba(255,255,255,0.2)" }}>/</span>
+          <span className="text-sm truncate" style={{ color: "#94a3b8" }}>{product.name}</span>
         </div>
       </header>
 
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="rounded-2xl overflow-hidden" style={{ background: "#a8a8a8", border: "1px solid #7a7a7a" }}>
+        <div className="rounded-2xl overflow-hidden" style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.09)" }}>
           <div className="grid md:grid-cols-2 gap-0">
-            <div className="flex items-center justify-center p-8 min-h-72" style={{ background: "#878787" }}>
+            <div className="flex items-center justify-center p-8 min-h-72" style={{ background: "rgba(255,255,255,0.02)", borderRight: "1px solid rgba(255,255,255,0.09)" }}>
               {product.image_url ? (
                 <img src={product.image_url} alt={product.name} className="max-h-64 w-full object-contain" />
               ) : (
-                <div className="w-32 h-32 rounded-full flex items-center justify-center" style={{ background: "#9e9e9e" }}>
-                  <Tag className="w-12 h-12 text-black/20" />
+                <div className="w-32 h-32 rounded-full flex items-center justify-center" style={{ background: "rgba(255,255,255,0.05)" }}>
+                  <Tag className="w-12 h-12" style={{ color: "rgba(255,255,255,0.15)" }} />
                 </div>
               )}
             </div>
             <div className="p-8 flex flex-col">
               <div className="flex items-center gap-2 mb-3 flex-wrap">
-                <span className="inline-block px-3 py-1 rounded-full text-xs font-bold text-white" style={{ background: "#2563eb" }}>
+                <span className="inline-block px-3 py-1 rounded-full text-xs font-bold text-white"
+                  style={{ background: "linear-gradient(135deg, #2563eb, #4f46e5)" }}>
                   {CAT_NAMES[product.category_id] || product.category_id}
                 </span>
                 {product.certified && (
@@ -85,28 +92,28 @@ export default function ProductDetail() {
                   </span>
                 )}
               </div>
-              <h1 className="text-2xl md:text-3xl font-black text-black mb-3">{product.name}</h1>
+              <h1 className="text-2xl md:text-3xl font-black mb-3" style={{ color: "#f1f5f9" }}>{product.name}</h1>
               <div className="mb-6">
                 {product.inquiry_only || !product.price ? (
-                  <div className="flex items-center gap-2 text-black">
+                  <div className="flex items-center gap-2" style={{ color: "#94a3b8" }}>
                     <Info className="w-4 h-4" /><span className="text-sm">Cena na poptávku</span>
                   </div>
                 ) : (
                   <div>
-                    <span className="text-xs uppercase tracking-wide text-black">Cena od</span>
-                    <div className="text-3xl font-black text-black">{product.price} <span className="text-base font-normal">Kč bez DPH</span></div>
+                    <span className="text-xs uppercase tracking-wide" style={{ color: "#94a3b8" }}>Cena od</span>
+                    <div className="text-3xl font-black" style={{ color: "#38bdf8" }}>{product.price} <span className="text-base font-normal" style={{ color: "#94a3b8" }}>Kč bez DPH</span></div>
                   </div>
                 )}
               </div>
               <div className="mt-auto space-y-3">
                 <a href={`mailto:servisdychl@seznam.cz?subject=Poptávka: ${product.name}`}
                   className="flex items-center justify-center gap-2 w-full py-3 rounded-xl font-bold text-white transition-opacity hover:opacity-80"
-                  style={{ background: "#2563eb" }}>
+                  style={{ background: "linear-gradient(135deg, #2563eb, #4f46e5)", boxShadow: "0 4px 16px rgba(37,99,235,0.3)" }}>
                   <Mail className="w-4 h-4" /> Nezávazná poptávka
                 </a>
                 <a href="tel:+420775698555"
-                  className="flex items-center justify-center gap-2 w-full py-3 rounded-xl font-bold text-black transition-opacity hover:opacity-80"
-                  style={{ border: "1px solid #7a7a7a" }}>
+                  className="flex items-center justify-center gap-2 w-full py-3 rounded-xl font-bold transition-opacity hover:opacity-80"
+                  style={{ border: "1px solid rgba(255,255,255,0.12)", color: "#f1f5f9", background: "rgba(255,255,255,0.04)" }}>
                   <Phone className="w-4 h-4" /> +420 775 698 555
                 </a>
               </div>
@@ -115,31 +122,32 @@ export default function ProductDetail() {
 
           {/* HTML description from ReactQuill */}
           {product.description && (
-            <div className="p-8" style={{ borderTop: "1px solid #7a7a7a" }}>
-              <h2 className="text-lg font-black text-black mb-4">Popis produktu</h2>
-              <div className="text-sm leading-relaxed text-black product-description"
+            <div className="p-8" style={{ borderTop: "1px solid rgba(255,255,255,0.09)" }}>
+              <h2 className="text-lg font-black mb-4" style={{ color: "#f1f5f9" }}>Popis produktu</h2>
+              <div className="text-sm leading-relaxed product-description"
+                style={{ color: "#cbd5e1" }}
                 dangerouslySetInnerHTML={{ __html: product.description }} />
             </div>
           )}
 
           {/* Variants table */}
           {variants && Array.isArray(variants) && variants.length > 0 && (
-            <div className="p-8" style={{ borderTop: "1px solid #7a7a7a" }}>
-              <h2 className="text-lg font-black text-black mb-4">Varianty a parametry</h2>
+            <div className="p-8" style={{ borderTop: "1px solid rgba(255,255,255,0.09)" }}>
+              <h2 className="text-lg font-black mb-4" style={{ color: "#f1f5f9" }}>Varianty a parametry</h2>
               <div className="overflow-x-auto">
                 <table className="w-full text-sm border-collapse">
                   <thead>
-                    <tr style={{ background: "#878787" }}>
+                    <tr style={{ background: "rgba(56,189,248,0.08)" }}>
                       {Object.keys(variants[0]).map(key => (
-                        <th key={key} className="text-left px-4 py-2.5 font-bold text-black" style={{ border: "1px solid #7a7a7a" }}>{key}</th>
+                        <th key={key} className="text-left px-4 py-2.5 font-bold" style={{ border: "1px solid rgba(255,255,255,0.09)", color: "#38bdf8" }}>{key}</th>
                       ))}
                     </tr>
                   </thead>
                   <tbody>
                     {variants.map((row, i) => (
-                      <tr key={i} style={{ background: i % 2 === 0 ? "#a8a8a8" : "#9e9e9e" }}>
+                      <tr key={i} style={{ background: i % 2 === 0 ? "rgba(255,255,255,0.03)" : "rgba(255,255,255,0.01)" }}>
                         {Object.values(row).map((val, j) => (
-                          <td key={j} className="px-4 py-2.5 text-black" style={{ border: "1px solid #7a7a7a" }}>{val}</td>
+                          <td key={j} className="px-4 py-2.5" style={{ border: "1px solid rgba(255,255,255,0.09)", color: "#cbd5e1" }}>{val}</td>
                         ))}
                       </tr>
                     ))}
@@ -152,15 +160,21 @@ export default function ProductDetail() {
       </div>
 
       <style>{`
-        .product-description h2, .product-description h3 { font-weight: 700; margin: 1em 0 0.5em; }
-        .product-description ul, .product-description ol { padding-left: 1.5em; margin: 0.5em 0; }
+        .product-description { color: #cbd5e1; }
+        .product-description h2, .product-description h3 { font-weight: 700; margin: 1em 0 0.5em; color: #f1f5f9; }
+        .product-description h4, .product-description h5 { font-weight: 700; margin: 0.8em 0 0.4em; color: #e2e8f0; }
+        .product-description p { margin: 0.5em 0; color: #cbd5e1; }
+        .product-description ul, .product-description ol { padding-left: 1.5em; margin: 0.5em 0; color: #cbd5e1; }
         .product-description li { margin: 0.25em 0; }
+        .product-description strong, .product-description b { font-weight: 700; color: #e2e8f0; }
+        .product-description a { color: #38bdf8; text-decoration: underline; }
         .product-description table { border-collapse: collapse; width: 100%; margin: 1em 0; min-width: 400px; }
-        .product-description td, .product-description th { border: 1px solid #7a7a7a; padding: 6px 12px; white-space: nowrap; }
-        .product-description th { background: #878787; font-weight: 700; }
+        .product-description td, .product-description th { border: 1px solid rgba(255,255,255,0.09); padding: 6px 12px; white-space: nowrap; color: #cbd5e1; }
+        .product-description th { background: rgba(56,189,248,0.08); font-weight: 700; color: #38bdf8; }
+        .product-description tr:nth-child(even) td { background: rgba(255,255,255,0.02); }
         .product-description .table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
-        .product-description p { margin: 0.5em 0; }
-        .product-description strong, .product-description b { font-weight: 700; }
+        .product-description span[style*="color"] { color: #cbd5e1 !important; }
+        .product-description span[style*="background"] { background: transparent !important; }
       `}</style>
     </div>
   );

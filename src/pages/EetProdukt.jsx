@@ -93,9 +93,9 @@ export default function EetProdukt() {
 
   if (!product) {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center gap-4" style={{ background: "#939393" }}>
-        <p className="text-black">Produkt nenalezen.</p>
-        <Link to="/" className="font-semibold text-black underline hover:opacity-70">
+      <div className="min-h-screen flex flex-col items-center justify-center gap-4" style={{ background: "#0b1120" }}>
+        <p style={{ color: "#94a3b8" }}>Produkt nenalezen.</p>
+        <Link to="/" className="font-semibold underline hover:opacity-70" style={{ color: "#38bdf8" }}>
           ← Zpět na úvodní stránku
         </Link>
       </div>
@@ -103,24 +103,30 @@ export default function EetProdukt() {
   }
 
   return (
-    <div className="min-h-screen" style={{ background: "#939393" }}>
-      <header className="sticky top-0 z-40" style={{ background: "#939393", borderBottom: "1px solid #7a7a7a" }}>
+    <div className="min-h-screen" style={{ background: "#0b1120" }}>
+      <header className="sticky top-0 z-40" style={{
+        background: "rgba(16,28,65,0.92)",
+        backdropFilter: "blur(16px)",
+        WebkitBackdropFilter: "blur(16px)",
+        borderBottom: "1px solid rgba(255,255,255,0.09)",
+      }}>
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center gap-3">
           <Link
             to="/"
-            className="flex items-center gap-2 font-semibold text-sm text-black hover:opacity-70"
+            className="flex items-center gap-2 font-semibold text-sm hover:opacity-70"
+            style={{ color: "#38bdf8" }}
           >
             <ArrowLeft className="w-4 h-4" /> Zpět
           </Link>
-          <span className="text-black/40">/</span>
-          <span className="text-sm truncate text-black">{product.name}</span>
+          <span style={{ color: "rgba(255,255,255,0.2)" }}>/</span>
+          <span className="text-sm truncate" style={{ color: "#94a3b8" }}>{product.name}</span>
         </div>
       </header>
 
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="rounded-2xl overflow-hidden" style={{ background: "#a8a8a8", border: "1px solid #7a7a7a" }}>
+        <div className="rounded-2xl overflow-hidden" style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.09)" }}>
           <div className="grid md:grid-cols-2 gap-0">
-            <div className="flex items-center justify-center p-8 min-h-72" style={{ background: "#878787" }}>
+            <div className="flex items-center justify-center p-8 min-h-72" style={{ background: "rgba(255,255,255,0.02)", borderRight: "1px solid rgba(255,255,255,0.09)" }}>
               <img
                 src={product.image}
                 alt={product.name}
@@ -131,22 +137,22 @@ export default function EetProdukt() {
               <div className="flex items-center gap-2 mb-3 flex-wrap">
                 <span
                   className="inline-block px-3 py-1 rounded-full text-xs font-bold text-white"
-                  style={{ background: "#2563eb" }}
+                  style={{ background: "linear-gradient(135deg, #2563eb, #4f46e5)" }}
                 >
                   {product.category}
                 </span>
               </div>
-              <h1 className="text-2xl md:text-3xl font-black text-black mb-3">{product.name}</h1>
+              <h1 className="text-2xl md:text-3xl font-black mb-3" style={{ color: "#f1f5f9" }}>{product.name}</h1>
               <div className="mb-6">
                 {product.inquiry_only || !product.price ? (
-                  <div className="flex items-center gap-2 text-black">
+                  <div className="flex items-center gap-2" style={{ color: "#94a3b8" }}>
                     <Info className="w-4 h-4" />
                     <span className="text-sm">Cena na poptávku</span>
                   </div>
                 ) : (
                   <div>
-                    <span className="text-xs uppercase tracking-wide text-black">Cena</span>
-                    <div className="text-2xl font-black text-black">{product.price}</div>
+                    <span className="text-xs uppercase tracking-wide" style={{ color: "#94a3b8" }}>Cena</span>
+                    <div className="text-2xl font-black" style={{ color: "#38bdf8" }}>{product.price}</div>
                   </div>
                 )}
               </div>
@@ -154,14 +160,14 @@ export default function EetProdukt() {
                 <a
                   href={`mailto:servisdychl@seznam.cz?subject=Poptávka: ${product.name}`}
                   className="flex items-center justify-center gap-2 w-full py-3 rounded-xl font-bold text-white transition-opacity hover:opacity-80"
-                  style={{ background: "#2563eb" }}
+                  style={{ background: "linear-gradient(135deg, #2563eb, #4f46e5)", boxShadow: "0 4px 16px rgba(37,99,235,0.3)" }}
                 >
                   <Mail className="w-4 h-4" /> Nezávazná poptávka
                 </a>
                 <a
                   href="tel:+420775698555"
-                  className="flex items-center justify-center gap-2 w-full py-3 rounded-xl font-bold text-black transition-opacity hover:opacity-80"
-                  style={{ border: "1px solid #7a7a7a" }}
+                  className="flex items-center justify-center gap-2 w-full py-3 rounded-xl font-bold transition-opacity hover:opacity-80"
+                  style={{ border: "1px solid rgba(255,255,255,0.12)", color: "#f1f5f9", background: "rgba(255,255,255,0.04)" }}
                 >
                   <Phone className="w-4 h-4" /> +420 775 698 555
                 </a>
@@ -169,14 +175,14 @@ export default function EetProdukt() {
             </div>
           </div>
 
-          <div className="p-8" style={{ borderTop: "1px solid #7a7a7a" }}>
-            <h2 className="text-lg font-black text-black mb-4">Popis produktu</h2>
-            <p className="text-sm leading-relaxed text-black mb-4">{product.description}</p>
-            <p className="text-sm text-black/60 italic">Podrobný popis bude doplněn.</p>
+          <div className="p-8" style={{ borderTop: "1px solid rgba(255,255,255,0.09)" }}>
+            <h2 className="text-lg font-black mb-4" style={{ color: "#f1f5f9" }}>Popis produktu</h2>
+            <p className="text-sm leading-relaxed mb-4" style={{ color: "#cbd5e1" }}>{product.description}</p>
+            <p className="text-sm italic" style={{ color: "#64748b" }}>Podrobný popis bude doplněn.</p>
           </div>
 
           {product.image2 && (
-            <div className="p-8 flex justify-center" style={{ borderTop: "1px solid #7a7a7a" }}>
+            <div className="p-8 flex justify-center" style={{ borderTop: "1px solid rgba(255,255,255,0.09)" }}>
               <img
                 src={product.image2}
                 alt={`${product.name} – detail`}

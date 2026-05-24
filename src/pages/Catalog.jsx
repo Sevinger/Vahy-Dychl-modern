@@ -60,8 +60,8 @@ export default function Catalog() {
   };
 
   return (
-    <div className="min-h-screen" style={{ background: "#161b22" }}>
-      <header className="border-b border-white/10 sticky top-0 z-40 shadow-sm" style={{ background: "#1a1f2e" }}>
+    <div className="min-h-screen" style={{ background: "#0b1120" }}>
+      <header className="border-b border-white/10 sticky top-0 z-40 shadow-sm" style={{ background: "#0f1629" }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center gap-4">
           <Link to="/" className="flex items-center gap-2 text-blue-400 hover:text-blue-300 font-semibold text-sm">
             <ArrowLeft className="w-4 h-4" /> Zpět
@@ -100,7 +100,7 @@ export default function Catalog() {
                   ? "bg-blue-700 text-white border-transparent"
                   : "border-white/15 text-gray-300 hover:border-blue-600 hover:text-white"
               }`}
-              style={{ background: selectedCat === c.id ? undefined : "#1e2433" }}
+              style={{ background: selectedCat === c.id ? undefined : "#0f1629" }}
             >
               {c.label}
             </button>
@@ -112,7 +112,7 @@ export default function Catalog() {
         {loading ? (
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
             {Array.from({ length: 10 }).map((_, i) => (
-              <div key={i} className="rounded-2xl h-56 animate-pulse border border-white/8" style={{ background: "#1e2433" }} />
+              <div key={i} className="rounded-2xl h-56 animate-pulse border border-white/8" style={{ background: "#0f1629" }} />
             ))}
           </div>
         ) : filtered.length === 0 ? (
@@ -124,7 +124,7 @@ export default function Catalog() {
                 key={p.id}
                 to={`/produkt/${p.id}`}
                 className="rounded-2xl border border-white/8 hover:border-blue-600/50 hover:shadow-lg hover:-translate-y-1 transition-all flex flex-col overflow-hidden group"
-                style={{ background: "#1e2433" }}
+                style={{ background: "#0f1629" }}
               >
                 <div className="aspect-square bg-white/5 flex items-center justify-center overflow-hidden">
                   {p.image_url ? (

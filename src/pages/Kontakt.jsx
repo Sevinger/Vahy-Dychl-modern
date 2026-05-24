@@ -4,7 +4,7 @@ import ServisniKontaktCard from "../components/ServisniKontaktCard";
 
 export default function Kontakt() {
   return (
-    <div className="min-h-screen" style={{ background: "#939393" }}>
+    <div className="min-h-screen" style={{ background: "#0b1120" }}>
       <Header />
       <main className="flex min-h-[80vh] items-center justify-center p-8">
         <div style={{ maxWidth: "600px", width: "100%" }}>
