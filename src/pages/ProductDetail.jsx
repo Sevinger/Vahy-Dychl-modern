@@ -37,20 +37,20 @@ export default function ProductDetail() {
   }
 
   if (loading) return (
-    <div className="min-h-screen flex items-center justify-center" style={{ background: "#0b1120" }}>
+    <div className="min-h-screen flex items-center justify-center" style={{ background: "#1c1f3e" }}>
       <div className="w-8 h-8 border-4 rounded-full animate-spin" style={{ borderColor: "rgba(255,255,255,0.1)", borderTopColor: "#38bdf8" }} />
     </div>
   );
 
   if (!product) return (
-    <div className="min-h-screen flex flex-col items-center justify-center gap-4" style={{ background: "#0b1120" }}>
+    <div className="min-h-screen flex flex-col items-center justify-center gap-4" style={{ background: "#1c1f3e" }}>
       <p style={{ color: "#94a3b8" }}>Produkt nenalezen.</p>
       <Link to="/katalog" className="font-semibold underline hover:opacity-70" style={{ color: "#38bdf8" }}>← Zpět do katalogu</Link>
     </div>
   );
 
   return (
-    <div className="min-h-screen" style={{ background: "#0b1120" }}>
+    <div className="min-h-screen" style={{ background: "#1c1f3e" }}>
       <header className="sticky top-0 z-40" style={{
         background: "rgba(16,28,65,0.92)",
         backdropFilter: "blur(16px)",

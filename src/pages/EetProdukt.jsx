@@ -93,7 +93,7 @@ export default function EetProdukt() {
 
   if (!product) {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center gap-4" style={{ background: "#0b1120" }}>
+      <div className="min-h-screen flex flex-col items-center justify-center gap-4" style={{ background: "#1c1f3e" }}>
         <p style={{ color: "#94a3b8" }}>Produkt nenalezen.</p>
         <Link to="/" className="font-semibold underline hover:opacity-70" style={{ color: "#38bdf8" }}>
           ← Zpět na úvodní stránku
@@ -103,7 +103,7 @@ export default function EetProdukt() {
   }
 
   return (
-    <div className="min-h-screen" style={{ background: "#0b1120" }}>
+    <div className="min-h-screen" style={{ background: "#1c1f3e" }}>
       <header className="sticky top-0 z-40" style={{
         background: "rgba(16,28,65,0.92)",
         backdropFilter: "blur(16px)",

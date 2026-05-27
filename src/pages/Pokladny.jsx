@@ -4,7 +4,7 @@ import Footer from "../components/Footer";
 
 export default function Pokladny() {
   return (
-    <div className="min-h-screen" style={{ background: "#0b1120" }}>
+    <div className="min-h-screen" style={{ background: "#1c1f3e" }}>
       <Header />
       <main className="flex min-h-[60vh] flex-col items-center justify-center gap-6 p-8 text-center">
         <div style={{ fontSize: "4rem" }}>🔧</div>

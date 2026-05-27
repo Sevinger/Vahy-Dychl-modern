@@ -21,7 +21,7 @@ const CARDS = [
 
 export default function Servis() {
   return (
-    <div className="min-h-screen" style={{ background: "#0b1120" }}>
+    <div className="min-h-screen" style={{ background: "#1c1f3e" }}>
       <Header />
 
       <section className="py-20">

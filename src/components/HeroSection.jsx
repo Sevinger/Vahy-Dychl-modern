@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { CheckCircle } from "lucide-react";
+import { CheckCircle, Star } from "lucide-react";
 
 const BULLETS = [
   "Průmyslové, obchodní, laboratorní a osobní váhy",
@@ -48,23 +48,8 @@ export default function HeroSection() {
   return (
     <section
       id="vahy"
-      className="relative overflow-hidden py-16 md:py-24"
-      style={{ background: "#0b1120" }}
+      className="animated-grid relative overflow-hidden py-16 md:py-24"
     >
-      {/* Animovaná mřížka */}
-      <div
-        aria-hidden
-        style={{
-          position: "absolute",
-          inset: 0,
-          backgroundImage:
-            "linear-gradient(rgba(56,189,248,0.055) 1px, transparent 1px), linear-gradient(90deg, rgba(56,189,248,0.055) 1px, transparent 1px)",
-          backgroundSize: "40px 40px",
-          animation: "grid-move 8s linear infinite",
-          maskImage: "radial-gradient(ellipse at center, transparent 25%, black 90%)",
-          WebkitMaskImage: "radial-gradient(ellipse at center, transparent 25%, black 90%)",
-        }}
-      />
 
       {/* Plovoucí orby */}
       <div aria-hidden style={{
@@ -143,17 +128,23 @@ export default function HeroSection() {
 
           {/* Pravá strana — bestsellery */}
           <div className="md:w-3/5 flex flex-col gap-5">
-            <h2 className="text-lg font-bold uppercase tracking-widest">
+            <h2>
               <span style={{
-                display: "inline-block",
-                border: "1px solid rgba(255,255,255,0.1)",
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "7px",
                 borderRadius: "9999px",
-                padding: "4px 20px",
-                color: "#64748b",
-                fontWeight: 700,
+                padding: "7px 20px 7px 16px",
+                color: "#f1f5f9",
+                fontWeight: 800,
                 fontSize: "11px",
-                letterSpacing: "0.2em",
+                letterSpacing: "0.18em",
+                textTransform: "uppercase",
+                background: "linear-gradient(135deg, rgba(37,99,235,0.22) 0%, rgba(79,70,229,0.22) 100%)",
+                border: "1px solid rgba(56,189,248,0.45)",
+                boxShadow: "0 0 18px rgba(56,189,248,0.18), 0 0 6px rgba(37,99,235,0.25), inset 0 1px 0 rgba(255,255,255,0.07)",
               }}>
+                <Star style={{ width: 12, height: 12, fill: "#38bdf8", color: "#38bdf8", flexShrink: 0 }} />
                 Nejprodávanější váhy
               </span>
             </h2>

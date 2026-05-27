@@ -51,7 +51,7 @@ export default function ContactSection() {
   });
 
   return (
-    <section id="kontakt" className="py-20" style={{ background: "#0f1629" }}>
+    <section id="kontakt" className="py-20" style={{ background: "#252848" }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-14">
           <h2 className="text-3xl md:text-4xl font-black uppercase tracking-widest" style={{ color: "#f1f5f9" }}>

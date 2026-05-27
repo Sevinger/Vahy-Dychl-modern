@@ -61,7 +61,7 @@ export default function CategoriesSection() {
   };
 
   return (
-    <section id="kategorie" className="py-20" style={{ background: "#0f1629" }}>
+    <section id="kategorie" className="py-20" style={{ background: "#252848" }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-12">
           <div>
