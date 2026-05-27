@@ -1,3 +1,9 @@
+# Projektová dokumentace — jen lokálně, ne na GitHubu
+Vahy-Dychl-WEB-PROJECT.md
+vahy-dychl-progress.md
+.DS_Store
+.superpowers/
+
 # Logs
 logs
 *.log
