@@ -50,20 +50,10 @@
   }
 }
 
-/* Pohyblivá mřížka */
-@keyframes grid-move {
-  from { background-position: 0 0; }
-  to   { background-position: 50px 50px; }
-}
-
 .animated-grid {
   background-color: #1c1f3e;
-  background-image:
-    linear-gradient(rgba(255,255,255,0.07) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.07) 1px, transparent 1px),
-    radial-gradient(ellipse at 55% 30%, #383c6a 0%, #272b52 55%, #1c1f3e 100%);
-  background-size: 50px 50px, 50px 50px, 100% 100%;
-  animation: grid-move 8s linear infinite;
+  background-image: radial-gradient(ellipse at 55% 30%, #383c6a 0%, #272b52 55%, #1c1f3e 100%);
+  background-size: 100% 100%;
 }
 
 /* Plovoucí orby */

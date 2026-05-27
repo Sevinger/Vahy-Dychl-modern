@@ -43,12 +43,14 @@ export default function NewsSection() {
               onClick={() => navigate(`/katalog?search=${encodeURIComponent(item.search)}`)}
               className="text-left group transition-all hover:scale-[1.02] flex flex-col overflow-hidden"
               style={{
-                background: "rgba(255,255,255,0.04)",
-                border: "1px solid rgba(255,255,255,0.08)",
+                background: "rgba(255,255,255,0.09)",
+                backdropFilter: "blur(16px)",
+                WebkitBackdropFilter: "blur(16px)",
+                border: "1px solid rgba(255,255,255,0.15)",
                 borderRadius: "14px",
               }}
-              onMouseEnter={e => e.currentTarget.style.borderColor = "rgba(56,189,248,0.3)"}
-              onMouseLeave={e => e.currentTarget.style.borderColor = "rgba(255,255,255,0.08)"}
+              onMouseEnter={e => e.currentTarget.style.borderColor = "rgba(56,189,248,0.4)"}
+              onMouseLeave={e => e.currentTarget.style.borderColor = "rgba(255,255,255,0.15)"}
             >
               <div className="p-5 flex flex-col flex-1">
                 <div className="flex gap-2 justify-center mb-4 min-h-[120px] items-center">

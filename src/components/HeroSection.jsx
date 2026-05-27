@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { CheckCircle, Star } from "lucide-react";
 
 const BULLETS = [
   "Průmyslové, obchodní, laboratorní a osobní váhy",
@@ -129,22 +128,14 @@ export default function HeroSection() {
           {/* Pravá strana — bestsellery */}
           <div className="md:w-3/5 flex flex-col gap-5">
             <h2>
-              <span style={{
-                display: "inline-flex",
-                alignItems: "center",
-                gap: "7px",
-                borderRadius: "9999px",
-                padding: "7px 20px 7px 16px",
-                color: "#f1f5f9",
-                fontWeight: 800,
-                fontSize: "11px",
-                letterSpacing: "0.18em",
-                textTransform: "uppercase",
-                background: "linear-gradient(135deg, rgba(37,99,235,0.22) 0%, rgba(79,70,229,0.22) 100%)",
-                border: "1px solid rgba(56,189,248,0.45)",
-                boxShadow: "0 0 18px rgba(56,189,248,0.18), 0 0 6px rgba(37,99,235,0.25), inset 0 1px 0 rgba(255,255,255,0.07)",
-              }}>
-                <Star style={{ width: 12, height: 12, fill: "#38bdf8", color: "#38bdf8", flexShrink: 0 }} />
+              <span
+                className="inline-block px-5 py-2 rounded-full text-sm font-black tracking-widest uppercase"
+                style={{
+                  background: "rgba(56,189,248,0.12)",
+                  border: "1px solid rgba(56,189,248,0.3)",
+                  color: "#38bdf8",
+                }}
+              >
                 Nejprodávanější váhy
               </span>
             </h2>
@@ -154,15 +145,17 @@ export default function HeroSection() {
                   onClick={() => navigate(`/katalog?search=${encodeURIComponent(p.search)}`)}
                   className="text-left group flex flex-col transition-all hover:scale-[1.02]"
                   style={{
-                    background: "rgba(255,255,255,0.04)",
-                    border: "1px solid rgba(255,255,255,0.09)",
+                    background: "rgba(255,255,255,0.09)",
+                    backdropFilter: "blur(16px)",
+                    WebkitBackdropFilter: "blur(16px)",
+                    border: "1px solid rgba(255,255,255,0.15)",
                     borderRadius: "14px",
                     overflow: "hidden",
                   }}
-                  onMouseEnter={e => e.currentTarget.style.borderColor = "rgba(56,189,248,0.35)"}
-                  onMouseLeave={e => e.currentTarget.style.borderColor = "rgba(255,255,255,0.09)"}
+                  onMouseEnter={e => e.currentTarget.style.borderColor = "rgba(56,189,248,0.4)"}
+                  onMouseLeave={e => e.currentTarget.style.borderColor = "rgba(255,255,255,0.15)"}
                 >
-                  <div className="flex items-center justify-center p-6" style={{ background: "rgba(255,255,255,0.02)", minHeight: "180px" }}>
+                  <div className="flex items-center justify-center p-6" style={{ background: "rgba(255,255,255,0.04)", minHeight: "180px" }}>
                     <img src={p.img} alt={p.name} className="max-h-40 w-full object-contain group-hover:scale-105 transition-transform" />
                   </div>
                   <div className="px-4 py-4" style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}>
