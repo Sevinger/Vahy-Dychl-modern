@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { supabase } from "@/api/supabaseClient";
 import { ArrowLeft, Phone, Mail, Tag, Info } from "lucide-react";
+import DOMPurify from "dompurify";
 
 const CAT_NAMES = {
   A: "Laboratorní & analytické", B: "Obchodní bez tisku", C: "Obchodní s tiskem",
@@ -106,7 +107,7 @@ export default function ProductDetail() {
                 )}
               </div>
               <div className="mt-auto space-y-3">
-                <a href={`mailto:servisdychl@seznam.cz?subject=Poptávka: ${product.name}`}
+                <a href={`mailto:servisdychl@seznam.cz?subject=Popt%C3%A1vka%3A%20${encodeURIComponent(product.name)}`}
                   className="flex items-center justify-center gap-2 w-full py-3 rounded-xl font-bold text-white transition-opacity hover:opacity-80"
                   style={{ background: "linear-gradient(135deg, #2563eb, #4f46e5)", boxShadow: "0 4px 16px rgba(37,99,235,0.3)" }}>
                   <Mail className="w-4 h-4" /> Nezávazná poptávka
@@ -126,7 +127,7 @@ export default function ProductDetail() {
               <h2 className="text-lg font-black mb-4" style={{ color: "#f1f5f9" }}>Popis produktu</h2>
               <div className="text-sm leading-relaxed product-description"
                 style={{ color: "#cbd5e1" }}
-                dangerouslySetInnerHTML={{ __html: product.description }} />
+                dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(product.description) }} />
             </div>
           )}
 

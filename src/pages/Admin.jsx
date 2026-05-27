@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import DOMPurify from "dompurify";
 import { supabase, uploadProductImage } from "@/api/supabaseClient";
 import { useAuth } from "@/lib/AuthContext";
 import { Plus, Pencil, Trash2, X, Check, Scale, LogOut, Upload, Image, FileText, Loader2, AlertCircle } from "lucide-react";
@@ -34,7 +35,7 @@ function HtmlEditor({ value, onChange }) {
       {preview ? (
         <div style={{ padding: "16px", minHeight: "256px", fontSize: "13px", lineHeight: 1.6, overflow: "auto" }}
           className="product-desc-preview"
-          dangerouslySetInnerHTML={{ __html: value || "<p style='color:#94a3b8'>Žádný obsah</p>" }} />
+          dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(value || "<p style='color:#94a3b8'>Žádný obsah</p>") }} />
       ) : (
         <textarea
           value={value || ""}

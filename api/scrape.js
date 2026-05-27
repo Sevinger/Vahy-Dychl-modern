@@ -1,5 +1,20 @@
+const ALLOWED_HOSTS = [
+  'vahy-dychl.cz',
+  'www.vahy-dychl.cz',
+  'new.vahy-dychl.cz',
+  'old.vahy-dychl.cz',
+];
+
+function isAllowedUrl(rawUrl) {
+  let parsed;
+  try { parsed = new URL(rawUrl); } catch { return false; }
+  if (parsed.protocol !== 'https:' && parsed.protocol !== 'http:') return false;
+  const hostname = parsed.hostname.toLowerCase();
+  return ALLOWED_HOSTS.some(h => hostname === h || hostname.endsWith('.' + h));
+}
+
 export default async function handler(req, res) {
-  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Origin', 'https://vahy-dychl.cz');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
   if (req.method === 'OPTIONS') return res.status(200).end();
@@ -8,8 +23,12 @@ export default async function handler(req, res) {
   const { url } = req.body;
   if (!url) return res.status(400).json({ error: 'url is required' });
 
+  if (!isAllowedUrl(url)) {
+    return res.status(400).json({ error: 'URL není povolena. Povoleny jsou pouze stránky vahy-dychl.cz.' });
+  }
+
   const geminiKey = process.env.GEMINI_API_KEY;
-  if (!geminiKey) return res.status(500).json({ error: 'GEMINI_API_KEY not configured' });
+  if (!geminiKey) return res.status(500).json({ error: 'Interní chyba konfigurace' });
 
   try {
     const pageRes = await fetch(url, {
@@ -65,7 +84,7 @@ Odpověz POUZE validním JSON bez markdown backticks:
     );
 
     const geminiData = await geminiRes.json();
-    if (!geminiRes.ok) throw new Error(geminiData?.error?.message || 'Gemini error');
+    if (!geminiRes.ok) throw new Error('Chyba AI zpracování');
 
     const text = geminiData.candidates?.[0]?.content?.parts?.[0]?.text || '';
     const clean = text.replace(/```json|```/g, '').trim();
@@ -83,6 +102,6 @@ Odpověz POUZE validním JSON bez markdown backticks:
     });
   } catch (err) {
     console.error('Scrape error:', err);
-    return res.status(500).json({ error: err.message || 'Interní chyba' });
+    return res.status(500).json({ error: 'Interní chyba' });
   }
 }
