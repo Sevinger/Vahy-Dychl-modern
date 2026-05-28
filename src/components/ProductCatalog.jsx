@@ -101,6 +101,8 @@ const catalog = [
     label: "Paletové váhy",
     short: "Paletové",
     products: [
+      { name: "Paletový vozík s váhou PV4TYCS", desc: "Integrovaná váha v paletovém vozíku, váživost 2000kg, přesnost 1kg. Možnost úředního ověření", price: "od 12.100", certified: false },
+      { name: "Paletový vozík s váhou TSCALE TPS-II", desc: "Integrovaná váha v paletovém vozíku, váživost 2000kg, přesnost 500g. Úředně ověřeno (M)", price: "od 33.900", certified: true },
       { name: "KPZ1", desc: "Váživost 2200kg, přesnost 500g. Možnost úředního ověření", price: "od 22.590", certified: true },
       { name: "P4TLDFWL-UNI", desc: "Váživost 300/600/1500kg. Možnost ověření (OIML)", price: "od 19.790", certified: true },
       { name: "P4TDFWL", desc: "Váživost 300–2000kg. Možnost ověření (OIML)", price: "od 17.690", certified: true },
