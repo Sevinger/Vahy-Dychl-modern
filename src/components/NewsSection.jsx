@@ -9,18 +9,18 @@ const NEWS = [
     search: "ACLAS PS1",
   },
   {
-    name: "Paletová váha P4TLDFWL-UNI",
-    price: "19.790 Kč bez DPH",
-    certified: true,
-    imgs: ["https://new.vahy-dychl.cz/P4TLDFWL/1.jpg", "https://new.vahy-dychl.cz/P4TLDFWL/2.jpg"],
-    search: "P4TLDFWL",
+    name: "Paletový vozík s váhou PV4TYCS",
+    price: "od 12.100 Kč bez DPH",
+    certified: false,
+    imgs: ["/produkty/pv4tycs/1.jpg", "/produkty/pv4tycs/2.jpg"],
+    search: "PV4TYCS",
   },
   {
-    name: "Počítací váha KPZ",
-    price: "od 4.240 Kč bez DPH",
-    certified: false,
-    imgs: ["https://new.vahy-dychl.cz/kpz2047.jpg"],
-    search: "KPZ",
+    name: "Paletový vozík s váhou TSCALE TPS-II",
+    price: "od 33.900 Kč bez DPH",
+    certified: true,
+    imgs: ["/produkty/tscale-tps/2.jpg", "/produkty/tscale-tps/1.jpg"],
+    search: "TSCALE TPS",
   },
 ];
 
