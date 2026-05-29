@@ -8,10 +8,10 @@ const PRODUCTS = [
     search: "Plošinová",
   },
   {
-    name: "Paletová váha do 2000kg",
-    img: "https://www.vahy-dychl.cz/userFiles/listy/paletak.jpg",
-    price: "od 9.990 Kč bez DPH",
-    search: "Paletová",
+    name: "Paletový vozík s váhou PV4TYCS",
+    img: "/produkty/pv4tycs/1.jpg",
+    price: "od 12.100 Kč bez DPH",
+    search: "PV4TYCS",
   },
   {
     name: "Můstková váha E-M",
