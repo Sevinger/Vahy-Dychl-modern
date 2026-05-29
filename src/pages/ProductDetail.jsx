@@ -107,11 +107,12 @@ export default function ProductDetail() {
                 )}
               </div>
               <div className="mt-auto space-y-3">
-                <a href={`mailto:servisdychl@seznam.cz?subject=Popt%C3%A1vka%3A%20${encodeURIComponent(product.name)}`}
+                <Link
+                  to={`/poptavka?produkt=${encodeURIComponent(product.name)}`}
                   className="flex items-center justify-center gap-2 w-full py-3 rounded-xl font-bold text-white transition-opacity hover:opacity-80"
                   style={{ background: "linear-gradient(135deg, #2563eb, #4f46e5)", boxShadow: "0 4px 16px rgba(37,99,235,0.3)" }}>
                   <Mail className="w-4 h-4" /> Nezávazná poptávka
-                </a>
+                </Link>
                 <a href="tel:+420775698555"
                   className="flex items-center justify-center gap-2 w-full py-3 rounded-xl font-bold transition-opacity hover:opacity-80"
                   style={{ border: "1px solid rgba(255,255,255,0.12)", color: "#f1f5f9", background: "rgba(255,255,255,0.04)" }}>

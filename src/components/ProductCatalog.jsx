@@ -313,13 +313,13 @@ export default function ProductCatalog() {
                     Detail
                   </Link>
                 )}
-                <a
-                  href="#kontakt"
+                <Link
+                  to={`/poptavka?produkt=${encodeURIComponent(p.name)}`}
                   className="flex items-center gap-1 text-xs font-semibold text-white bg-gradient-to-r from-sky-500 to-cyan-400 px-3 py-2 rounded-xl hover:scale-105 transition-all shadow"
                 >
                   <MessageSquare className="w-3 h-3" />
                   {p.inquiry ? "Poptávka" : "Poptat"}
-                </a>
+                </Link>
               </div>
             </div>
           </div>

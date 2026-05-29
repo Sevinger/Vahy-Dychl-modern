@@ -12,6 +12,7 @@ import ProductDetail from './pages/ProductDetail';
 import EetProdukt from './pages/EetProdukt';
 import Pokladny from './pages/Pokladny';
 import Kontakt from './pages/Kontakt';
+import Poptavka from './pages/Poptavka';
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
             <Route path="/servis" element={<Servis />} />
             <Route path="/pokladny" element={<Pokladny />} />
             <Route path="/kontakt" element={<Kontakt />} />
+            <Route path="/poptavka" element={<Poptavka />} />
             <Route path="*" element={<PageNotFound />} />
           </Routes>
         </Router>

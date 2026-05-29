@@ -9,10 +9,20 @@ const escHtml = s => String(s ?? '')
 
 const isValidEmail = s => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(s ?? ''));
 
+const ALLOWED_ORIGINS = [
+  'https://vahy-dychl.cz',
+  'https://www.vahy-dychl.cz',
+  'https://vahy-dychl-modern.vercel.app',
+];
+
 export default async function handler(req, res) {
-  res.setHeader('Access-Control-Allow-Origin', 'https://vahy-dychl.cz');
+  const origin = req.headers.origin;
+  if (ALLOWED_ORIGINS.includes(origin)) {
+    res.setHeader('Access-Control-Allow-Origin', origin);
+  }
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  res.setHeader('Vary', 'Origin');
   if (req.method === 'OPTIONS') return res.status(200).end();
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
 
