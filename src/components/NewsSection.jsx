@@ -19,7 +19,7 @@ const NEWS = [
     name: "Paletový vozík s váhou TSCALE TPS-II",
     price: "od 33.900 Kč bez DPH",
     certified: true,
-    imgs: ["/produkty/tscale-tps/2.jpg", "/produkty/tscale-tps/1.jpg"],
+    imgs: ["/produkty/tscale-tps/1.jpg", "/produkty/tscale-tps/2.jpg"],
     search: "TSCALE TPS",
   },
 ];
