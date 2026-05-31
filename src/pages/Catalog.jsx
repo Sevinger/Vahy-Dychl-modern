@@ -38,7 +38,7 @@ export default function Catalog() {
     // description obsahuje base64 obrázky a způsobuje pomalé načítání
     supabase
       .from("products")
-      .select("id, name, category_id, price, certified, inquiry_only, image_url")
+      .select("id, name, category_id, price, certified, verification_option, inquiry_only, image_url")
       .eq("active", true)
       .order("name", { ascending: true })
       .then(({ data }) => {
@@ -148,10 +148,13 @@ export default function Catalog() {
                       ? <span className="text-xs font-bold text-orange-400">od {p.price} Kč</span>
                       : <span className="text-xs text-gray-500">na poptávku</span>
                     }
-                    {p.certified && (
+                    {p.verification_option ? (
+                      <span className="rounded text-[9px] font-black flex items-center justify-center shrink-0 px-1.5 py-0.5"
+                        style={{ background: "#ea580c", color: "#fff" }}>možnost ověření</span>
+                    ) : p.certified ? (
                       <span className="rounded text-[9px] font-black flex items-center justify-center shrink-0 px-1.5 py-0.5"
                         style={{ background: "#16a34a", color: "#fff" }}>Ověřeno</span>
-                    )}
+                    ) : null}
                   </div>
                 </div>
               </Link>
