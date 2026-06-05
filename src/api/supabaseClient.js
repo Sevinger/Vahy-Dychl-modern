@@ -9,6 +9,20 @@ if (!supabaseUrl || !supabaseAnonKey) {
 
 export const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
+export async function recordVisit() {
+  if (typeof window !== 'undefined' && sessionStorage.getItem('vd_visit_counted')) return;
+  try {
+    await supabase.from('page_visits').insert([{}]);
+    if (typeof window !== 'undefined') sessionStorage.setItem('vd_visit_counted', '1');
+  } catch {}
+}
+
+export async function getVisitorStats() {
+  const { data, error } = await supabase.rpc('get_visitor_stats');
+  if (error) return null;
+  return data;
+}
+
 // Nahraje soubor do bucketu product-images a vrátí veřejné URL
 export async function uploadProductImage(file) {
   const ext = file.name.split('.').pop();

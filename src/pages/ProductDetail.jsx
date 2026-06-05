@@ -92,6 +92,11 @@ export default function ProductDetail() {
                     Ověřeno
                   </span>
                 )}
+                {product.verification_option && (
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded text-xs font-bold text-white" style={{ background: "#ea580c" }}>
+                    Možnost ověření
+                  </span>
+                )}
               </div>
               <h1 className="text-2xl md:text-3xl font-black mb-3" style={{ color: "#f1f5f9" }}>{product.name}</h1>
               <div className="mb-6">

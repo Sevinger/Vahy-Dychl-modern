@@ -80,3 +80,39 @@ CREATE POLICY "Admin delete product-images"
 
 CREATE INDEX IF NOT EXISTS idx_products_active_cat ON public.products(active, category_id);
 CREATE INDEX IF NOT EXISTS idx_products_created_at ON public.products(created_at DESC);
+
+-- =============================================
+-- Visitor tracking
+-- =============================================
+CREATE TABLE IF NOT EXISTS public.page_visits (
+  id         BIGSERIAL PRIMARY KEY,
+  visited_at TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+
+ALTER TABLE public.page_visits ENABLE ROW LEVEL SECURITY;
+
+DROP POLICY IF EXISTS "Public insert page_visits" ON public.page_visits;
+DROP POLICY IF EXISTS "Admin read page_visits"    ON public.page_visits;
+
+CREATE POLICY "Public insert page_visits"
+  ON public.page_visits FOR INSERT WITH CHECK (true);
+
+CREATE POLICY "Admin read page_visits"
+  ON public.page_visits FOR SELECT TO authenticated
+  USING (auth.email() = 'm.dytrich@seznam.cz');
+
+CREATE OR REPLACE FUNCTION public.get_visitor_stats()
+RETURNS json
+LANGUAGE sql
+SECURITY DEFINER
+SET search_path = public
+AS $$
+  SELECT json_build_object(
+    'today',  (SELECT COUNT(*) FROM page_visits WHERE visited_at >= CURRENT_DATE),
+    'week',   (SELECT COUNT(*) FROM page_visits WHERE visited_at >= date_trunc('week', now())),
+    'year',   (SELECT COUNT(*) FROM page_visits WHERE visited_at >= date_trunc('year', now())),
+    'total',  (SELECT COUNT(*) FROM page_visits)
+  );
+$$;
+
+GRANT EXECUTE ON FUNCTION public.get_visitor_stats() TO anon, authenticated;

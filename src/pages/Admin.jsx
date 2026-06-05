@@ -2,7 +2,8 @@ import React, { useState, useEffect, useRef } from "react";
 import DOMPurify from "dompurify";
 import { supabase, uploadProductImage } from "@/api/supabaseClient";
 import { useAuth } from "@/lib/AuthContext";
-import { Plus, Pencil, Trash2, X, Check, Scale, LogOut, Upload, Image, FileText, Loader2, AlertCircle, Newspaper, Star } from "lucide-react";
+import { Plus, Pencil, Trash2, X, Check, Scale, LogOut, Upload, Image, FileText, Loader2, AlertCircle, Newspaper, Star, BarChart2, RefreshCw, Users, Calendar, CalendarDays, TrendingUp } from "lucide-react";
+import { getVisitorStats } from "@/api/supabaseClient";
 
 const CATEGORIES = [
   { id: "A", label: "A – Laboratorní & analytické" },
@@ -131,6 +132,10 @@ export default function Admin() {
   const [uploadingN2, setUploadingN2] = useState(false);
   const [savingNews, setSavingNews] = useState(false);
 
+  // Stats
+  const [stats, setStats] = useState(null);
+  const [statsLoading, setStatsLoading] = useState(false);
+
   // Bestsellers
   const [bsItems, setBsItems] = useState([]);
   const [bsLoading, setBsLoading] = useState(false);
@@ -139,6 +144,13 @@ export default function Admin() {
   const [bsForm, setBsForm] = useState(emptyBs);
   const [uploadingBs, setUploadingBs] = useState(false);
   const [savingBs, setSavingBs] = useState(false);
+
+  const loadStats = async () => {
+    setStatsLoading(true);
+    const data = await getVisitorStats();
+    setStats(data);
+    setStatsLoading(false);
+  };
 
   const load = async () => {
     setLoading(true);
@@ -168,6 +180,7 @@ export default function Admin() {
       load();
       loadNews();
       loadBs();
+      loadStats();
     }
   }, [isAuthenticated]);
 
@@ -414,6 +427,7 @@ export default function Admin() {
             { id: "products", label: "Produkty", Icon: Scale },
             { id: "news", label: "Aktuality", Icon: Newspaper },
             { id: "bestsellers", label: "Nejprodávanější váhy", Icon: Star },
+            { id: "stats", label: "Statistiky", Icon: BarChart2 },
           ].map(({ id, label, Icon }) => (
             <button key={id} onClick={() => setActiveTab(id)}
               className={`flex items-center gap-2 px-5 py-3 font-semibold text-sm border-b-2 -mb-px transition-all ${
@@ -636,6 +650,47 @@ export default function Admin() {
                     ))}
                   </tbody>
                 </table>
+              </div>
+            )}
+          </>
+        )}
+
+        {/* ===== STATS TAB ===== */}
+        {activeTab === "stats" && (
+          <>
+            <div className="flex items-center justify-between mb-6">
+              <h1 className="text-2xl font-black text-slate-800">Statistiky návštěvnosti</h1>
+              <button onClick={loadStats} disabled={statsLoading}
+                className="flex items-center gap-2 px-4 py-2 rounded-xl border border-slate-200 text-slate-600 font-semibold hover:bg-slate-50 transition-all text-sm disabled:opacity-50">
+                <RefreshCw className={`w-4 h-4 ${statsLoading ? "animate-spin" : ""}`} /> Obnovit
+              </button>
+            </div>
+
+            {statsLoading ? (
+              <div className="text-center py-20 text-slate-400">Načítám statistiky...</div>
+            ) : !stats ? (
+              <div className="text-center py-20 text-slate-400">
+                <BarChart2 className="w-10 h-10 mx-auto mb-3 opacity-30" />
+                <p>Data není k dispozici. Zkontrolujte SQL migraci (supabase/schema.sql).</p>
+              </div>
+            ) : (
+              <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+                {[
+                  { label: "Dnes", value: stats.today, Icon: Calendar, color: "blue" },
+                  { label: "Tento týden", value: stats.week, Icon: CalendarDays, color: "indigo" },
+                  { label: "Tento rok", value: stats.year, Icon: TrendingUp, color: "violet" },
+                  { label: "Celkem", value: stats.total, Icon: Users, color: "slate" },
+                ].map(({ label, value, Icon, color }) => (
+                  <div key={label} className="bg-white rounded-2xl shadow-sm border border-slate-100 p-6 flex flex-col gap-3">
+                    <div className={`w-10 h-10 rounded-xl flex items-center justify-center bg-${color}-50`}>
+                      <Icon className={`w-5 h-5 text-${color}-600`} />
+                    </div>
+                    <div>
+                      <div className="text-3xl font-black text-slate-800">{Number(value).toLocaleString("cs-CZ")}</div>
+                      <div className="text-sm text-slate-500 font-medium mt-0.5">{label}</div>
+                    </div>
+                  </div>
+                ))}
               </div>
             )}
           </>
