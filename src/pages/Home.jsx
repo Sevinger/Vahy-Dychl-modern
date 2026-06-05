@@ -3,7 +3,6 @@ import Header from "../components/Header";
 import HeroSection from "../components/HeroSection";
 import CategoriesSection from "../components/CategoriesSection";
 import NewsSection from "../components/NewsSection";
-import BestsellerSection from "../components/BestsellerSection";
 import ContactSection from "../components/ContactSection";
 import Footer from "../components/Footer";
 import { recordVisit } from "@/api/supabaseClient";
@@ -18,7 +17,6 @@ export default function Home() {
         <HeroSection />
         <CategoriesSection />
         <NewsSection />
-        <BestsellerSection />
         <ContactSection />
       </main>
       <Footer />

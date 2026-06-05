@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { supabase } from "@/api/supabaseClient";
 
 const BULLETS = [
   "Průmyslové, obchodní, laboratorní a osobní váhy",
@@ -10,33 +11,18 @@ const BULLETS = [
   "Pravidelné revize a ověřování",
 ];
 
-const BESTSELLERS = [
-  {
-    name: "Plošinová váha do 1500 kg",
-    img: "https://new.vahy-dychl.cz/4TxxxxDFWL/image005.jpg",
-    price: "od 14.990 Kč bez DPH",
-    search: "Plošinová",
-    certified: true,
-  },
-  {
-    name: "Paletový vozík s váhou PV4TYCS",
-    img: "/produkty/pv4tycs/1.jpg",
-    price: "od 12.100 Kč bez DPH",
-    search: "PV4TYCS",
-    certified: false,
-  },
-  {
-    name: "Můstková váha E-M",
-    img: "https://new.vahy-dychl.cz/DWVL/2.jpg",
-    price: "od 3.490 Kč bez DPH",
-    search: "Můstková",
-    certified: true,
-  },
-];
-
 export default function HeroSection() {
   const navigate = useNavigate();
   const [searchValue, setSearchValue] = useState("");
+  const [bestsellers, setBestsellers] = useState([]);
+
+  useEffect(() => {
+    supabase
+      .from("bestseller_items")
+      .select("*")
+      .order("display_order", { ascending: true })
+      .then(({ data }) => setBestsellers(data || []));
+  }, []);
 
   const handleSearch = (e) => {
     if (e.key === "Enter" && searchValue.trim()) {
@@ -140,9 +126,9 @@ export default function HeroSection() {
               </span>
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-              {BESTSELLERS.map((p) => (
-                <button key={p.name}
-                  onClick={() => navigate(`/katalog?search=${encodeURIComponent(p.search)}`)}
+              {bestsellers.map((item) => (
+                <button key={item.id}
+                  onClick={() => item.search_term && navigate(`/katalog?search=${encodeURIComponent(item.search_term)}`)}
                   className="text-left group flex flex-col transition-all hover:scale-[1.02]"
                   style={{
                     background: "rgba(255,255,255,0.09)",
@@ -156,17 +142,15 @@ export default function HeroSection() {
                   onMouseLeave={e => e.currentTarget.style.borderColor = "rgba(255,255,255,0.15)"}
                 >
                   <div className="flex items-center justify-center p-6" style={{ background: "rgba(255,255,255,0.04)", minHeight: "180px" }}>
-                    <img src={p.img} alt={p.name} className="max-h-40 w-full object-contain group-hover:scale-105 transition-transform" />
+                    {item.img_url && (
+                      <img src={item.img_url} alt={item.name} className="max-h-40 w-full object-contain group-hover:scale-105 transition-transform" />
+                    )}
                   </div>
                   <div className="px-4 py-4" style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}>
-                    <p className="text-sm font-semibold leading-tight mb-2 flex items-center gap-1.5" style={{ color: "#e2e8f0" }}>
-                      {p.name}
-                      {p.certified && (
-                        <span className="rounded text-[9px] font-black flex items-center justify-center shrink-0 px-1.5 py-0.5"
-                          style={{ background: "#16a34a", color: "#fff" }}>Ověřeno</span>
-                      )}
+                    <p className="text-sm font-semibold leading-tight mb-2" style={{ color: "#e2e8f0" }}>
+                      {item.name}
                     </p>
-                    <p className="text-base font-black" style={{ color: "#38bdf8" }}>{p.price}</p>
+                    <p className="text-base font-black" style={{ color: "#38bdf8" }}>{item.price}</p>
                   </div>
                 </button>
               ))}
